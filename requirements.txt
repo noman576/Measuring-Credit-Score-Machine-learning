@@ -1,0 +1,13 @@
+# Libraries imported by the original notebooks.
+# Unpinned because the historical notebooks have not been rerun against a verified environment.
+# Modern releases may require the API updates noted in README.md.
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+imbalanced-learn
+statsmodels
+scipy
+python-dateutil
+jupyter
