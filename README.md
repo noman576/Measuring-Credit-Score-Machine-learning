@@ -1,10 +1,94 @@
-# Measuring-Credit-Score-Machine-learning
+# Credit Scoring and Loan Risk Classification Using Machine Learning
 
-To reduce the default risk of an investor in peer to peer lending institution this project measure and analyze credit score of retail or individual customer. Considering lending club as a sample of the industry we will classify customer as Good (1) or Bad (0) based on different attributes. Then by using machine learning classification algorithm (Logistic Regression, Naïve Bayes, Decision Tree, Random Forest, Support vector machine) accuracy and precision of the model will be measure and compared.
+A comparative machine learning analysis of lending outcomes and credit-risk indicators using peer-to-peer lending datasets from **Lending Club**, **Prosper**, and **Zopa**, with a separate **FICO-related classification** notebook.
 
-We choose our dataset from Kaggle (https://www.kaggle.com/), and it contains 2,650,550 observations with 150 variables for the time period of 2007 to 2019Q3. To get meaningful variable description we also use Data dictionary from Kaggle and merge it with the main dataset. after Data cleaning, Feature engineering, Correlation, Train & Test data, we set our Classification Models for Logistic Regression, Naïve Bayes, Decision Tree, Random Forest, Support vector machine.
+> **Project status:** Historical exploratory research / portfolio case study. The original notebooks and saved results are retained. This repository is **not** a validated loan-origination credit scoring system and should not be used for real lending decisions.
 
-Analyzing the result of the above 5 models that are used to measure the performance of our credit rating, it can be seen that overall the credit score model is quite robust and accurate considering the fact that all the models have and accuracy over 85% for both holdout method and cross validation. Moreover, use of feature engineering helped to achieve such accurate scores. Feature engineering helped to point out the most important attributes to work with in order to achieve our results. However, the attributes that defines class 0 seems to be less accurate compared to class 1 as it showed poorer results in terms of precision and recall score and type I as well as type II error in confusion matrix.
+## Objective
 
-There are various companies that spearhead such measures like FICO in USA. More than often, credit given to customers has always been emphasized to such measures of risk mitigation like FICO score. Coming back to our objective was to formulate a credit score that is robust enough to accurately separate good borrower from bad in order to predict who will be paying off loan to others. Using data of lending club, we have made a credit scoring model which will help us to classify accurately the objective of the report. With the advancement of technology and e-commerce Peer to Peer Lending Industry is at a boom. Companies such as lending club have the biggest limelight for success and failure.
-Throughout our work, we have meticulously selected the most relevant and important features that defines a borrower using various machine learning tools such as Feature Engineering. In addition, industry practices have also been taken into consideration. When the results were calculated, it was indeed proven that the formulated credit rating score card is better than current industry practice. Moreover, the credit rating scorecard proves to be effective to other companies as well both within competitors such as PROSPER to other geographical location like ZOPA. Therefore, we believe that we have successfully made a credit rating model that is robust and highly accurate
+Explore whether borrower, loan, and repayment attributes can classify loans into good/bad outcome groups, compare five classification methods, and examine how patterns differ among datasets. A separate Lending Club experiment binarizes a *last observed* FICO range; it does not reconstruct an official FICO score.
+
+The loan-outcome labels are defined within each notebook from observed repayment/status categories, with **0 = bad** and **1 = good**. These are project-defined labels, **not** official credit scores. Some loans are excluded based on their status. Exact definitions and exclusions differ by dataset.
+
+## Notebooks
+
+| Notebook | Role |
+| --- | --- |
+| [Credit Score of Lending Club..ipynb](Credit%20Score%20of%20Lending%20Club..ipynb) | Lending Club loan-status classification and model comparison |
+| [Credit Scoring of Prosper Data..ipynb](Credit%20Scoring%20of%20Prosper%20Data..ipynb) | Prosper loan-status classification |
+| [Credit Scoring of Zopa Data ..ipynb](Credit%20Scoring%20of%20Zopa%20Data%20..ipynb) | Zopa status classification |
+| [FICO Score of Lending Club....ipynb](FICO%20Score%20of%20Lending%20Club....ipynb) | Binary classification using the *last observed* FICO range (threshold: 600) |
+
+The original analyses compare **Logistic Regression, Gaussian Naive Bayes, Decision Tree, Random Forest, and Support Vector Machine** (the FICO notebook contains four of these, without an SVM model).
+
+## Data
+
+The full datasets are **not committed** to this repository. The original notebooks expect the following files to be placed in the repository's working directory:
+
+| Local filename | Used by |
+| --- | --- |
+| `appl__accepted_20072019Q3.csv` | Lending Club and FICO |
+| `LCDataDictionary.csv` | Lending Club and FICO |
+| `prosperLoanData.csv` | Prosper |
+| `Prosper Loan Data - Variable Definitions.csv` | Prosper |
+| `data_for_loanbook_extract_2020-04-01.csv` | Zopa |
+
+The Lending Club source referenced in the original research was a Kaggle-hosted accepted-loans dataset covering 2007–2019 Q3 (reported in the original project as approximately 2.65 million observations and 150 columns). Dataset availability, versions, licenses, and access conditions may change. Search for the exact filenames through the respective dataset provider and verify the version before running. The Prosper and Zopa notebooks also use historical exports; data files are not redistributed here. No source URLs are asserted as authoritative for a specific version without independent verification.
+
+## Running the existing notebooks
+
+1. Clone or download this repository.
+2. Create a Python environment. For example:
+
+   ```bash
+   python -m venv .venv
+   ```
+
+3. Activate it: on Windows PowerShell, `./.venv/Scripts/Activate.ps1`; on macOS/Linux, `source .venv/bin/activate`.
+4. Install the libraries:
+
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+
+5. Obtain the five original data/dictionary files legally and place them beside the notebooks, preserving the filenames above.
+6. Open with `jupyter notebook` or another Jupyter-compatible editor.
+
+**Compatibility note:** These are original historical notebooks, not freshly rerun or verified on current package versions. Some cells use older APIs (for example, `RandomUnderSampler.fit_sample` and positional `DataFrame.drop` arguments), which may require adapting to `fit_resample` and `drop(columns=...)`. The dependency list documents library families rather than promising a reproducible pinned environment. Large data processing and model training may need significant memory and time.
+
+## Original approach
+
+- Explore distributions, missing data, and correlations.
+- Construct dataset-specific binary target labels.
+- Select and encode variables, scale numerical features, and inspect feature importance.
+- Use a train/test split and class rebalancing through random undersampling.
+- Fit and compare classification models.
+- Report classification metrics, confusion matrices, cross-validation accuracy, and ROC-related plots.
+
+## Results and interpretation
+
+The original write-up reported **accuracy above 85%** for the evaluated models and noted that class-specific precision/recall were weaker for one of the outcome groups. These are **historical notebook results, not independently reproduced or validated here**; do not treat this figure as prospective lending performance.
+
+### Important methodological limitations
+
+1. **Outcome leakage and feature availability:** The Lending Club notebook includes `total_pymnt`, `recoveries`, and `out_prncp` as predictors of loan status. Prosper includes `LP_NetPrincipalLoss`. These reflect loan performance after origination, so apparent classification performance can substantially overstate the ability to predict default *before a loan is issued*.
+2. **Preprocessing before train/test split:** Numerical scaling, categorical encoding, and supervised feature selection/importance analysis occur before the split in the original workflows. For trustworthy prospective evaluation, learn every preprocessing step within training folds only.
+3. **Random split and sampling:** Random train/test splits do not simulate future lending cohorts; use a time-based holdout when feasible. Ensure undersampling and all tuning happen inside training folds only.
+4. **ROC/AUC calculation:** Some ROC/AUC cells use hard class predictions or scores that are subsequently rounded. For properly interpreted ranking performance, compute ROC-AUC and ROC curves from continuous predicted probabilities or decision scores.
+5. **Target definitions and censoring:** The dataset-specific status mappings mix completed loans and delinquent statuses; excluding `Current` loans may introduce selection effects. Carefully define an observation window and outcome horizon for a forward-looking analysis.
+6. **FICO interpretation:** The FICO notebook uses the midpoint of the *last observed* FICO range, dichotomized at 600. It does not estimate a continuous FICO score or reproduce FICO's proprietary scoring algorithm.
+7. **No established superiority over industry benchmarks:** The project has not demonstrated an apples-to-apples out-of-time comparison with an official FICO score or production underwriting system. Any such superiority claim would be unsupported.
+
+The analysis is valuable as an exploration of tabular classification, feature engineering, model comparison, and differences across lending datasets; **do not use these historical accuracy figures as evidence of a deployable, fair, or compliant lending decision model**.
+
+## Improvements for a future predictive version
+
+To extend this research into a genuine origination-time default prediction benchmark: restrict all features to information known at application time; define a stable default horizon; split by issue date; fit preprocessing and class balancing within training folds; report bad-loan recall/precision, PR-AUC, ROC-AUC, calibration and subgroup performance; and compare with defensible, clearly defined baselines.
+
+## Tools
+
+Python, Jupyter Notebook, pandas, NumPy, Matplotlib, Seaborn, scikit-learn, imbalanced-learn, statsmodels, and SciPy / python-dateutil as required by the original environment.
+
+## Research use
+
+This repository is shared for learning and portfolio demonstration. Data-provider terms and any applicable privacy, fair-lending, or financial regulations must be respected. Do not use this exploratory model for real credit eligibility or financial decisions.
