@@ -69,6 +69,24 @@ The Lending Club source referenced in the original research was a Kaggle-hosted 
 
 The original write-up reported **accuracy above 85%** for the evaluated models and noted that class-specific precision/recall were weaker for one of the outcome groups. These are **historical notebook results, not independently reproduced or validated here**; do not treat this figure as prospective lending performance.
 
+
+### Lending Club — Model Comparison
+
+The Lending Club analysis evaluated five classification algorithms for distinguishing project-defined good and bad loan outcomes. The following metrics are taken from the original notebook's saved test-set outputs.
+
+| Model | Test Accuracy | Reported ROC-AUC |
+| --- | ---: | ---: |
+| Decision Tree | 88% | 0.8834 |
+| Logistic Regression | 94% | 0.9634 |
+| Gaussian Naive Bayes | 93% | 0.9309 |
+| **Random Forest** | **95%** | **0.9692** |
+| Support Vector Machine | 93% | 0.9023 |
+
+**Key observation:** Random Forest produced the highest reported accuracy and ROC-AUC among the evaluated models. These results are historical exploratory findings, not independently reproduced or evidence of prospective credit-risk prediction performance.
+
+**Evaluation caveat:** Outcome-related predictors and preprocessing choices may inflate performance. The reported ROC-AUC calculations use predicted class labels rather than probability scores or continuous decision scores; therefore, they should not be interpreted as conventional score-based ROC-AUC estimates.
+  
+
 ### Important methodological limitations
 
 1. **Outcome leakage and feature availability:** The Lending Club notebook includes `total_pymnt`, `recoveries`, and `out_prncp` as predictors of loan status. Prosper includes `LP_NetPrincipalLoss`. These reflect loan performance after origination, so apparent classification performance can substantially overstate the ability to predict default *before a loan is issued*.
