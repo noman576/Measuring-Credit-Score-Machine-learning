@@ -120,6 +120,22 @@ The Zopa analysis evaluated five classification algorithms using historical peer
 **Evaluation caveat:** These are historical exploratory results. Random Forest accuracy is calculated from the saved confusion matrix. ROC-AUC calculations are not fully consistent across models, and class imbalance, feature selection, and preprocessing choices limit direct comparisons and prospective interpretation.
 
 
+### Lending Club — FICO-Related Classification
+
+This experiment evaluated four machine learning algorithms for classifying a binary target derived from the last observed FICO score range, using a threshold of 600. It does not predict an official or continuous FICO credit score.
+
+| Model | Test Accuracy | Reported ROC-AUC |
+| --- | ---: | ---: |
+| Decision Tree | 76% | 0.7585 |
+| Logistic Regression | 91% | 0.8976 |
+| **Gaussian Naive Bayes** | **92%** | 0.8609 |
+| Random Forest | 89% | **0.9048** |
+
+**Key observation:** Gaussian Naive Bayes achieved the highest reported test accuracy, while Random Forest achieved the highest reported ROC-AUC.
+
+**Evaluation caveat:** These values are historical notebook outputs, not independently reproduced results. The target is based on the last observed FICO range rather than an origination-time credit score. The saved ROC-AUC calculations use predicted labels or scores depending on the model, and preprocessing choices limit prospective interpretation.
+  
+
 ### Important methodological limitations
 
 1. **Outcome leakage and feature availability:** The Lending Club notebook includes `total_pymnt`, `recoveries`, and `out_prncp` as predictors of loan status. Prosper includes `LP_NetPrincipalLoss`. These reflect loan performance after origination, so apparent classification performance can substantially overstate the ability to predict default *before a loan is issued*.
