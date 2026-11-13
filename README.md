@@ -87,6 +87,23 @@ The Lending Club analysis evaluated five classification algorithms for distingui
 **Evaluation caveat:** Outcome-related predictors and preprocessing choices may inflate performance. The reported ROC-AUC calculations use predicted class labels rather than probability scores or continuous decision scores; therefore, they should not be interpreted as conventional score-based ROC-AUC estimates.
   
 
+### Prosper — Model Comparison
+
+The Prosper analysis compared five classification algorithms using historical loan data. The following values are taken from the notebook's saved outputs.
+
+| Model | Test Accuracy | Reported ROC-AUC |
+| --- | ---: | ---: |
+| Decision Tree | 81% | 0.8175 |
+| Logistic Regression | 90% | 0.9311 |
+| **Gaussian Naive Bayes** | **91%** | 0.9121 |
+| Random Forest | 89% | **0.9412** |
+| Support Vector Machine | 90% | 0.8454 |
+
+**Key observation:** Gaussian Naive Bayes achieved the highest reported test accuracy, while Random Forest had the highest saved ROC-AUC value.
+
+**Evaluation caveat:** These are historical exploratory outputs, not independently reproduced results. The ROC-AUC values were calculated using predicted class labels, and some saved AUC values do not reconcile with the corresponding confusion matrices. Outcome-related features and preprocessing choices also limit their interpretation as prospective credit-risk performance.
+  
+
 ### Important methodological limitations
 
 1. **Outcome leakage and feature availability:** The Lending Club notebook includes `total_pymnt`, `recoveries`, and `out_prncp` as predictors of loan status. Prosper includes `LP_NetPrincipalLoss`. These reflect loan performance after origination, so apparent classification performance can substantially overstate the ability to predict default *before a loan is issued*.
