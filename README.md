@@ -67,7 +67,7 @@ The Lending Club source referenced in the original research was a Kaggle-hosted 
 
 ## Results and interpretation
 
-The original write-up reported **accuracy above 85%** for the evaluated models and noted that class-specific precision/recall were weaker for one of the outcome groups. These are **historical notebook results, not independently reproduced or validated here**; do not treat this figure as prospective lending performance.
+The original experiments evaluated multiple classification algorithms across Lending Club, Prosper, and Zopa datasets, alongside a separate FICO-related classification task. Reported model accuracy varied by dataset and algorithm. The following tables summarize historical results retained in the original notebooks; these results have not been independently reproduced or validated and should not be interpreted as prospective credit-risk prediction performance.
 
 
 ### Lending Club — Model Comparison
