@@ -102,7 +102,23 @@ The Prosper analysis compared five classification algorithms using historical lo
 **Key observation:** Gaussian Naive Bayes achieved the highest reported test accuracy, while Random Forest had the highest saved ROC-AUC value.
 
 **Evaluation caveat:** These are historical exploratory outputs, not independently reproduced results. The ROC-AUC values were calculated using predicted class labels, and some saved AUC values do not reconcile with the corresponding confusion matrices. Outcome-related features and preprocessing choices also limit their interpretation as prospective credit-risk performance.
-  
+
+### Zopa — Model Comparison
+
+The Zopa analysis evaluated five classification algorithms using historical peer-to-peer lending data. The following results are based on the original notebook's saved test-set outputs.
+
+| Model | Test Accuracy | Reported ROC-AUC |
+| --- | ---: | ---: |
+| Decision Tree | 73% | 0.7287 |
+| Logistic Regression | 75% | 0.7989 |
+| **Gaussian Naive Bayes** | **79%** | 0.7843 |
+| Random Forest | 77% | **0.8654** |
+| Support Vector Machine | 76% | 0.7537 |
+
+**Key observation:** Gaussian Naive Bayes achieved the highest test accuracy, while Random Forest achieved the highest reported ROC-AUC. The difference highlights why classification accuracy and discrimination metrics should be considered separately.
+
+**Evaluation caveat:** These are historical exploratory results. Random Forest accuracy is calculated from the saved confusion matrix. ROC-AUC calculations are not fully consistent across models, and class imbalance, feature selection, and preprocessing choices limit direct comparisons and prospective interpretation.
+
 
 ### Important methodological limitations
 
