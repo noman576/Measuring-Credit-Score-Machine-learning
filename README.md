@@ -92,3 +92,12 @@ Python, Jupyter Notebook, pandas, NumPy, Matplotlib, Seaborn, scikit-learn, imba
 ## Research use
 
 This repository is shared for learning and portfolio demonstration. Data-provider terms and any applicable privacy, fair-lending, or financial regulations must be respected. Do not use this exploratory model for real credit eligibility or financial decisions.
+
+## Acknowledgments
+
+This project was developed through independent analysis, practical implementation, and the application of machine learning techniques learned from academic literature, technical documentation, and online educational resources.
+
+The research applies data preprocessing, exploratory data analysis, feature engineering, and classification algorithms to historical lending datasets from Lending Club, Prosper, and Zopa.
+
+I acknowledge the contributions of the dataset providers, researchers, and educational resources that supported the development of this project. Specific third-party code and resources should be credited where applicable.
+  
